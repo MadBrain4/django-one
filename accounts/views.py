@@ -11,7 +11,7 @@ def hello (request, word) -> HttpResponse:
     return HttpResponse(f"Hello, {word}! This is the accounts app.")
 
 def about (request: HttpRequest) -> HttpResponse:
-    return HttpResponse("About page of the auth app. This is a test for the auth app.")
+    return render(request, "about.html")
 
 def projects (request: HttpRequest) -> HttpResponse:
     projects = Project.objects.all()
