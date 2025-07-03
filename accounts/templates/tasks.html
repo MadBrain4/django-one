@@ -33,17 +33,45 @@
 
         a {
             text-decoration: none;
-            color: #007bff;
-            font-weight: bold;
         }
 
-        a:hover {
-            text-decoration: underline;
+        .task-title {
+            font-weight: bold;
+            color: #007bff;
         }
 
         p {
-            margin: 5px 0 0 0;
+            margin: 5px 0 10px 0;
             color: #6c757d;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 6px 12px;
+            margin-right: 8px;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: 500;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .btn-edit {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .btn-edit:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-delete {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .btn-delete:hover {
+            background-color: #a71d2a;
         }
 
         .no-tasks {
@@ -60,8 +88,10 @@
         <ul>
             {% for task in tasks %}
                 <li>
-                    <a href="#">{{ task.name }}</a>
+                    <a href="#" class="task-title">{{ task.name }}</a>
                     <p>{{ task.description|default:"No hay descripción disponible." }}</p>
+                    <a href="#" class="btn btn-edit">Editar</a>
+                    <a href="#" class="btn btn-delete">Eliminar</a>
                 </li>
             {% endfor %}
         </ul>
