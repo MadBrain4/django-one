@@ -5,29 +5,27 @@ from django.shortcuts import get_object_or_404
 
 # Create your views here.
 def index (request: HttpRequest) -> HttpResponse:
-    return render(request, "index.html")
+    title = "Curso de Django"
+    return render(request, "index.html", {
+        "title": title
+    })
 
 def hello (request, word) -> HttpResponse:
     return HttpResponse(f"Hello, {word}! This is the accounts app.")
 
 def about (request: HttpRequest) -> HttpResponse:
-    return render(request, "about.html")
+    about_info = {
+        "title": "About Us",
+        "description": "This is a sample Django application to demonstrat e basic views and templates.",
+        "name_app": "Django Accounts App",
+    }
+    return render(request, "about.html", about_info)
 
 def projects (request: HttpRequest) -> HttpResponse:
     projects = Project.objects.all()
-    return JsonResponse(
-        {
-            "projects": list(projects.values("id", "name", "description"))
-        },
-        status=200
-    )
+    return render(request, "projects.html", {"projects": projects})
+
 
 def tasks (request: HttpRequest, id) -> HttpResponse:
     task = get_object_or_404(Task, id=id)
-    return JsonResponse(
-        {
-            "id": task.id,
-            "name": task.name,
-        },
-        status=200
-    )
+    return render(request, "tasks.html", {"task": task})
