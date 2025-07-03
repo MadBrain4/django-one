@@ -7,5 +7,5 @@ urlpatterns = [
     path('hello/<str:word>/', views.hello, name='hello'),
     path('index/', views.index, name='index'),
     path('projects/', views.projects, name='projects'),
-    path('tasks/<int:id>/', views.tasks, name='tasks'),
+    path('tasks/<int:project_id>/', views.tasks, name='tasks'),
 ]

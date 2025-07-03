@@ -26,6 +26,12 @@ def projects (request: HttpRequest) -> HttpResponse:
     return render(request, "projects.html", {"projects": projects})
 
 
-def tasks (request: HttpRequest, id) -> HttpResponse:
-    task = get_object_or_404(Task, id=id)
-    return render(request, "tasks.html", {"task": task})
+def tasks (request: HttpRequest, project_id) -> HttpResponse:
+    project = get_object_or_404(Project, id=project_id)
+    tasks = list(project.tasks.values())
+    return render(request, "tasks.html", 
+        {
+            "tasks": tasks,
+            "project": project
+        }
+    )

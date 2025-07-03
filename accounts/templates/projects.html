@@ -6,6 +6,12 @@
     <title>Projects</title>
 </head>
 <body>
-    <h3>{{ projects }}</h3>
+    <ul>
+        {% for project in projects %}
+            <li>
+                <a href="{% url 'tasks' project.id %}">{{ project.name }}</a>{% if project.description %} - {{ project.description }}{% endif %}
+            </li>
+        {% endfor %}
+    </ul>
 </body>
 </html>
