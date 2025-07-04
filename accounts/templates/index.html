@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }}</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block title %}Index{% endblock title %}
+
+{% block content %}
     <h1>Hola Bienvenido</h1>
     <h4>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde voluptatem quam assumenda, fugiat doloribus quae cupiditate id odit dolore quis blanditiis aspernatur mollitia inventore quos cumque odio a rem distinctio.</h4>
-</body>
-</html>
+{% endblock content %}
