@@ -88,9 +88,9 @@
         <ul>
             {% for task in tasks %}
                 <li>
-                    <a href="#" class="task-title">{{ task.name }}</a>
+                    <a href="#" class="task-title">{{ task.name }} - {{ task.done|yesno:"Lista,No Lista" }}</a>
                     <p>{{ task.description|default:"No hay descripción disponible." }}</p>
-                    <a href="#" class="btn btn-edit">Editar</a>
+                    <a href="#" class="btn btn-edit">Listo</a>
                     <a href="#" class="btn btn-delete">Eliminar</a>
                 </li>
             {% endfor %}
