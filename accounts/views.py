@@ -35,3 +35,6 @@ def tasks (request: HttpRequest, project_id) -> HttpResponse:
             "project": project
         }
     )
+
+def create_task (request: HttpRequest) -> HttpResponse:
+    return render(request, "create_task.html", {})
