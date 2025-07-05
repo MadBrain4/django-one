@@ -37,14 +37,15 @@ def tasks (request: HttpRequest, project_id) -> HttpResponse:
         }
     )
 
-def create_task (request: HttpRequest) -> HttpResponse:
+def create_task(request: HttpRequest) -> HttpResponse:
     if request.method == "POST":
-        Task.objects.create(
-            name=request.POST.get("name"),
-            description=request.POST.get("description"),
-            project_id=request.POST.get("project_id")
-        )
-    if request.method == "GET":
-        return render(request, "create_task.html", {
-            'form': CreateNewTaskForm(),
-        })
+        form = CreateNewTaskForm(request.POST)
+        if form.is_valid():
+            task = form.save(commit=False)
+            task.project_id = 1  # Si siempre es el mismo, o cámbialo por una lógica real
+            task.save()
+            return redirect('tasks', project_id=task.project_id)  # O donde quieras redirigir
+    else:
+        form = CreateNewTaskForm()
+
+    return render(request, "create_task.html", {'form': form})
