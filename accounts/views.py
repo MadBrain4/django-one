@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpRequest, HttpResponse, JsonResponse
 from .models import Project, Task
 from django.shortcuts import get_object_or_404
+from .forms import CreateNewTaskForm
 
 # Create your views here.
 def index (request: HttpRequest) -> HttpResponse:
@@ -37,4 +38,13 @@ def tasks (request: HttpRequest, project_id) -> HttpResponse:
     )
 
 def create_task (request: HttpRequest) -> HttpResponse:
-    return render(request, "create_task.html", {})
+    if request.method == "POST":
+        Task.objects.create(
+            name=request.POST.get("name"),
+            description=request.POST.get("description"),
+            project_id=request.POST.get("project_id")
+        )
+    if request.method == "GET":
+        return render(request, "create_task.html", {
+            'form': CreateNewTaskForm(),
+        })
