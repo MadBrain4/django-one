@@ -11,8 +11,10 @@ def index (request: HttpRequest) -> HttpResponse:
         "title": title
     })
 
-def hello (request, word) -> HttpResponse:
-    return HttpResponse(f"Hello, {word}! This is the accounts app.")
+def hello(request, word=None) -> HttpResponse:
+    if word:
+        return HttpResponse(f"Hello, {word}! This is the accounts app.")
+    return HttpResponse("Hello! This is the accounts app.")
 
 def about (request: HttpRequest) -> HttpResponse:
     about_info = {
